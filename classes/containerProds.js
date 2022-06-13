@@ -9,28 +9,21 @@ class Contenedor {
         this.archivo = archivo;
     }
 
-    async updateById(productId, object) {
+    async updateById() {
         try {
-            const data = await this.getProds();
-            const productIndex = data.findIndex(e => e.id === parseInt(productId));
-
-            if (productIndex >= 0) {
-                const updatedObject = await {
-                    ...object,
-                    timestamp: moment().format("L LTS"),
-                    id: productId
-                };
-                data[productIndex] = updatedObject;
-                await fs.writeFile(this.archivo, JSON.stringify(data, null, 2));
-                return updatedObject;
-            } else {
-                return false;
-            }
+            return await this.findByIdAndUpdate(id,
+                {
+                    $set: products,
+                },
+                { new: true }
+            );
+        } catch (err) {
+            res.status(500).json({
+                error: err.message,
+                stack: err.stack,
+            });
         }
-        catch (err) {
-            console.log('ERROR ->', err);
-        }
-    }
+    };
 
 
     //ver
@@ -60,8 +53,8 @@ class Contenedor {
 
     async getProdById(idProducto) {
         try {
-            const productos = await this.getProds()
-            const idGet = await productos.findById(idProducto)
+            const objs = await products.find({});
+            const idGet = await objs.findById(idProducto)
             return idGet
         } catch (error) {
             return error
