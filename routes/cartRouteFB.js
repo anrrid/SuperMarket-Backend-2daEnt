@@ -1,14 +1,13 @@
+//cartFireBase
 import { Router } from 'express';
 import {CreateCart,
     getCarrito,
     deleteById,
-    updateById} from '../index.js'
+    updateById} from '../classes/containerFirebase.js'
 
 const router = Router();
 
 router.get('/', getCarrito);
-
-router.get('/:id', getProductById);
 
 router.post('/', CreateCart);
 
