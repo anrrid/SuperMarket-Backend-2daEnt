@@ -9,3 +9,12 @@ npm i express mongoose dotenv nodemon
 ```
 npm start 
 ```
+## Inicializar puerto 8080
+```
+npm run dev
+```
+
+## Verificar Productos
+```
+http://localhost:8080/api/products
+```
